@@ -3,20 +3,20 @@ import React, {useEffect, useState}from 'react';
 import './App.css';
 
 function App() {
-  const [fecha, setFecha] = useState(new Date())
-
-  useEffect(() => {
-    const timerId = setInterval(() => {
-    setFecha (new Date());
-    }, 1000);
-    return () => clearInterval(timerId); })
+ const subtitulo = "Este es un subtitulos";
+ const duplicar = (valor: number) => valor*2;
+ const imagenURL = "https://ensocore.com/media/61/reactjs-logo-sticker%20%281%29.jpg";
 
   return (
-    <div >
-<h3>Ejemplo HTML tsx</h3>
-  <input />
-  <div>{fecha.toString()}</div>
+    <div>
+    <h1>Hola mundo</h1>
+    <h3>{subtitulo.toLocaleUpperCase()} </h3>
+    <h4>El doble de 3 es {duplicar(3)}</h4>
+    <img alt="logo react" src={imagenURL} />
+    <div>
+    <input type="checkbox" checked={false} /> Este es un checkbox </div>
     </div>
+
   );
 }
 
