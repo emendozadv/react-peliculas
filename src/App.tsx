@@ -5,6 +5,8 @@ import './App.css';
 import MostrarTexto from './MostrarTexto';
 import EjemploReloj from './EjemploReloj';
 import ProyectarContenido2 from './ProyectarContenido2'
+import ContenidoDinamico from './ContenidoDinamico';
+import FormularioTexto from './FormularioTexto';
 
 function App() {
   const [texto, setTexto] = useState('Valor por defecto');
@@ -12,9 +14,14 @@ function App() {
   const imagenURL = "https://ensocore.com/media/61/reactjs-logo-sticker%20%281%29.jpg";
   const manejarClick = () => console.log('click');
 
-  const manejarKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => { 
-    console.log(e.currentTarget.value);
-    setTexto(e.currentTarget.value);
+  // const manejarKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => { 
+  //   console.log(e.currentTarget.value);
+  //   setTexto(e.currentTarget.value);
+  // }
+
+   const manejarKeyUp = (textoInput: string) => { 
+    console.log(textoInput);
+    setTexto(textoInput);
   }
 
   const parteIntermedia = <EjemploReloj />
@@ -25,9 +32,18 @@ function App() {
     
     const parteInferior = <div style={estilo}></div>
 
+    const calificaciones = [
+      {nombre: 'Felipe', calificacion: 75},
+      {nombre: 'Claudia', calificacion: 85},
+      {nombre: 'Roberto', calificacion: 95}
+    ]
+
   return (
     <div>
     <h1 className='rojo'>Hola mundo</h1>
+    <ContenidoDinamico calificacion = {85}/>
+    {calificaciones.map(cal => <ContenidoDinamico key={cal.nombre} {...cal}/>)}
+
     <button 
       // onClick={manejarClick}
       onMouseEnter={() => console.log('entrando')}
@@ -37,9 +53,11 @@ function App() {
     <br />
     <br />
 
-    <input type="text"
+    <FormularioTexto manejarKeyUp={(e: string) => manejarKeyUp(e)} />
+
+    {/* <input type="text"
     onKeyUp={(e) => manejarKeyUp(e)}
-    />
+    /> */}
 
     {/* <div>
     {texto}
