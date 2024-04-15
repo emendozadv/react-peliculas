@@ -7,6 +7,9 @@ import EjemploReloj from './EjemploReloj';
 import ProyectarContenido2 from './ProyectarContenido2'
 import ContenidoDinamico from './ContenidoDinamico';
 import FormularioTexto from './FormularioTexto';
+import EjemploUseEffect from './EjemploUseEffect';
+import ValorContext from './ValorContext';
+import Abuelo from './Abuelo';
 
 function App() {
   const [texto, setTexto] = useState('Valor por defecto');
@@ -41,8 +44,22 @@ function App() {
   return (
     <div>
     <h1 className='rojo'>Hola mundo</h1>
+
+    <ValorContext.Provider value={texto}>
+      <Abuelo/>
+    </ValorContext.Provider>
+
     <ContenidoDinamico calificacion = {85}/>
     {calificaciones.map(cal => <ContenidoDinamico key={cal.nombre} {...cal}/>)}
+
+    <div>
+    <input type="checkbox"
+    onChange={(e) => setChecked(e.currentTarget.checked)}
+    checked={checked} /> Mostrar componente useEffect
+    </div>
+
+    {checked ? <EjemploUseEffect /> : null}
+    
 
     <button 
       // onClick={manejarClick}
@@ -81,10 +98,10 @@ function App() {
 
     
     <img alt="logo react" src={imagenURL} />
-    <div>
+    {/* <div>
     <input type="checkbox" 
     onChange={(e) => setChecked(e.currentTarget.checked)}
-    checked={checked} /> Este es un checkbox </div>
+    checked={checked} /> Este es un checkbox </div> */}
     </div>
 
   );
